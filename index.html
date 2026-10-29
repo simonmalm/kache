@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kache: one terminal for all your computers</title>
+<meta name="description" content="Run commands and jobs on all your computers, move files between them, see their health, and work with AI agents across them. Free download for Windows and Linux.">
+<link rel="icon" href="owl.png">
+<style>
+@font-face { font-family: "Inter"; src: url("InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --term: #0c0c0c; --bg: #12131c; --panel: #1a1b27; --raised: #232433; --line: #2f3143;
+  --text: #e6e3dc; --muted: #8b8a99; --accent: #d8a04c; --info: #86a8e0;
+  --mono: ui-monospace, "JetBrains Mono", "Cascadia Mono", Consolas, "SF Mono", monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0; color: var(--text); background: var(--bg);
+  font: 400 16px/1.55 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--info); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+header { padding: 56px 0 24px; }
+.logo { image-rendering: pixelated; width: 292px; height: 88px; display: block; }
+h1 { font-size: 40px; line-height: 1.15; font-weight: 650; letter-spacing: -0.02em; margin: 28px 0 12px; }
+.lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0; }
+.version { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.version b { color: var(--accent); font-weight: 600; }
+h2 { font-size: 22px; font-weight: 650; letter-spacing: -0.01em; margin: 56px 0 16px; }
+.cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.card { background: var(--term); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.card h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+.card .for { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+.command { display: flex; align-items: center; gap: 8px; background: var(--bg); border-radius: 8px; padding: 10px 10px 10px 14px; }
+.command code { flex: 1; font: 13.5px/1.45 var(--mono); color: var(--text); white-space: nowrap; overflow-x: auto; }
+.copy { font: 500 13px "Inter", sans-serif; color: var(--text); background: var(--raised); border: 0; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+.copy:hover { background: #2c2e40; }
+.alt { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.sha { display: block; margin-top: 6px; font: 11.5px/1.4 var(--mono); color: var(--muted); word-break: break-all; }
+.soon { color: var(--muted); font-size: 15px; margin: 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 28px; padding: 0; margin: 0; list-style: none; }
+.features li { padding-left: 16px; position: relative; color: var(--text); }
+.features li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 2px; background: var(--accent); }
+.features b { font-weight: 600; }
+.changes { background: var(--term); border: 1px solid var(--line); border-radius: 12px; padding: 8px 24px; }
+.changes li { margin: 8px 0; }
+.changes h3 { font-size: 16px; font-weight: 600; margin: 22px 0 4px; }
+.changes p { color: var(--muted); }
+code { font-family: var(--mono); font-size: 0.88em; }
+.changes code, .features code { background: var(--raised); padding: 1px 5px; border-radius: 4px; }
+footer { margin: 64px 0 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer p { margin: 6px 0; }
+@media (max-width: 560px) { h1 { font-size: 30px; } .logo { width: 219px; height: 66px; } header { padding-top: 32px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <img class="logo" src="logo.png" alt="Kache" width="292" height="88">
+  <h1>One terminal for all your computers.</h1>
+  <p class="lead">Run commands and long jobs on your other devices, move files between them, see how they are doing, and see who, or which AI agent, is working where.</p>
+  <p class="version">Latest: <b>Kache 0.9.0</b>, an early release, out 29 October 2026</p>
+</header>
+
+<h2>Download</h2>
+<div class="cards">
+<div class="card">
+  <h3>Windows</h3>
+  <p class="for">Windows 10 and 11, x64. In PowerShell:</p>
+  <div class="command"><code>irm https://simonmalm.github.io/kache/install.ps1 | iex</code><button class="copy">Copy</button></div>
+  <p class="alt">Or <a href="https://github.com/simonmalm/kache/releases/download/v0.9.0/Kache-0.9.0-windows-x64.msi">download the installer</a> (MSI, 8.6 MB) and open it. Until releases are signed, Windows may call it an unrecognised app: choose More info, then Run anyway.<span class="sha">SHA-256 cee5a5a5d088c8d5741c702cbabb75f306ee9197d6fc205624328a159fc6708e</span></p>
+</div><div class="card">
+  <h3>Linux</h3>
+  <p class="for">x86_64 desktops.</p>
+  <p class="soon">The Linux package is not in this release yet; it comes with a later one.</p>
+</div>
+</div>
+<p class="alt">Each command downloads the installer, checks its SHA-256 and installs Kache for you alone: no administrator rights, nothing else to install first. Kache then starts at login; its owl sits among the tray icons. Pair a second device with <code>kache pair ADDRESS</code>.</p>
+
+<h2>What it does</h2>
+<ul class="features">
+  <li><b>Commands and jobs anywhere.</b> Run a command on any device and watch its output live, or start a long job that keeps running after you disconnect.</li>
+  <li><b>Files between devices.</b> Push, pull, copy and sync folders; every change can be undone.</li>
+  <li><b>Health at a glance.</b> CPU, memory, disks and GPUs of every device, with a week of history.</li>
+  <li><b>Built for AI agents.</b> Claude Code, Codex and others use Kache through its CLI or MCP, labelled by name, with a chat to talk to you and each other.</li>
+  <li><b>Relays.</b> Chains of steps across devices, agents and people that Kache carries through by itself.</li>
+  <li><b>You stay in charge.</b> Lock a device or its GPU for agents, set CPU, memory and temperature limits, and let Kache put work on whichever machine is free.</li>
+  <li><b>Private by design.</b> Each device has its own key; nothing goes through anyone else's server. Away from home, use it over Tailscale.</li>
+  <li><b>Small and quiet.</b> Two native programs, little memory, almost no CPU while idle.</li>
+</ul>
+
+<h2>What's in 0.9.0</h2>
+<div class="changes">
+<p>The first public release: an early one, with rough edges, for Windows 10 and 11 (x64). A Linux package follows.</p>
+<ul>
+<li>Commands and long jobs on any of your devices, with live output, a log for every job and evidence when something fails.</li>
+<li>Files between devices: push, pull, copy, sync and undo; read and patch files without a shell.</li>
+<li>Health of every device (CPU, memory, disks, GPUs) with a week of history.</li>
+<li>People and AI agents work side by side: everything shows who did it, a chat with mentions, read receipts and urgent messages, warnings before work collides, and gaze (an agent sees and uses another screen, with your permission).</li>
+<li>Relays: chains of steps across devices, agents and people that Kache carries through by itself.</li>
+<li>Locks and limits for agents (a device or its GPU, CPU, memory and temperature), and <code>any</code> as the device to put work where there is room.</li>
+<li>Data tools that work the same in every shell: convert, query, render, hash, archive and extract.</li>
+<li><code>kache mcp</code> for AI agents, and <code>kache guide</code> for everything they use.</li>
+<li>The window: terminal, chat, jobs, relays, devices and people, with the owl in the tray.</li>
+<li>MIT licensed. Third-party components keep their own licences (THIRD-PARTY-NOTICES.txt).</li>
+</ul>
+</div>
+
+<footer>
+  <p>Kache is free, under the <a href="https://github.com/simonmalm/kache/blob/main/LICENSE.txt">MIT licence</a>. Third-party components keep their own licences (<a href="https://github.com/simonmalm/kache/releases/download/v0.9.0/THIRD-PARTY-NOTICES.txt">notices</a>). This is an early release: expect rough edges, and <a href="https://github.com/simonmalm/kache/issues">report them</a>.</p>
+  <p>Every release, with its checksums: <a href="https://github.com/simonmalm/kache/releases">github.com/simonmalm/kache/releases</a></p>
+</footer>
+</div>
+<script>
+document.querySelectorAll(".copy").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var text = button.parentElement.querySelector("code").textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      button.textContent = "Copied";
+      setTimeout(function () { button.textContent = "Copy"; }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>
